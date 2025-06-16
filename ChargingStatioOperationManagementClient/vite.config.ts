@@ -13,5 +13,17 @@ function getPlugins() {
 
 export default defineConfig({
   plugins: getPlugins(),
-  base: '/ChargingStationOperationManagementSystem/'
+  // base: '/ChargingStationOperationManagementSystem/'
+  server:{
+    port:3001,
+    proxy:{
+      '^/api':{
+        target:'http://localhost:8080',
+        changeOrigin:true,
+        rewrite:(path)=>{
+          return path.replace(/^\/api/,'')
+        }
+      }
+    }
+  }
 });

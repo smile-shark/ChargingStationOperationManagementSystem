@@ -1,0 +1,14 @@
+.submenu {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform-origin: top;
+  transform: scaleY(0.9) translateY(-10px);
+  transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.submenu.expanded {
+  max-height: 500px; /* 根据子菜单最大高度调整 */
+  opacity: 1;
+  transform: scaleY(1) translateY(0);
+}

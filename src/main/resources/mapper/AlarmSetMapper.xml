@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smileshark.mapper.AlarmSetMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.smileshark.entity.AlarmSet">
+        <result column="charging_pile_id" property="chargingPileId" />
+        <result column="type" property="type" />
+        <result column="warning" property="warning" />
+        <result column="serious" property="serious" />
+        <result column="alarm_delay" property="alarmDelay" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        charging_pile_id, type, warning, serious, alarm_delay
+    </sql>
+
+</mapper>

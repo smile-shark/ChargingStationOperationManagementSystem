@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smileshark.mapper.ChargingStationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.smileshark.entity.ChargingStation">
+        <id column="charging_station_id" property="chargingStationId" />
+        <result column="operations_personnel_id" property="operationsPersonnelId" />
+        <result column="name" property="name" />
+        <result column="type" property="type" />
+        <result column="address" property="address" />
+        <result column="state" property="state" />
+        <result column="x" property="x" />
+        <result column="y" property="y" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="picture" property="picture" />
+        <result column="detail" property="detail" />
+        <result column="car_pile_count" property="carPileCount" />
+        <result column="es_pile_count" property="esPileCount" />
+        <result column="bus_pile_count" property="busPileCount" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        charging_station_id, operations_personnel_id, name, type, address, state, x, y, start_time, end_time, picture, detail, car_pile_count, es_pile_count, bus_pile_count
+    </sql>
+
+</mapper>

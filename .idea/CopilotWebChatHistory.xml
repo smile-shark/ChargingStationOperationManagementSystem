@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotWebChatHistory">
+    <option name="currentConversation">
+      <WebConversation>
+        <option name="session">
+          <ChatSession>
+            <option name="messages">
+              <list>
+                <UIChatMessage>
+                  <option name="command" value="" />
+                  <option name="content" value="添加分页插件" />
+                  <option name="cost" value="0" />
+                  <option name="createdAt" value="1750071588029" />
+                  <option name="localReferences">
+                    <list />
+                  </option>
+                  <option name="parser">
+                    <SimpleMarkdownStreamParser>
+                      <option name="content" value="添加分页插件" />
+                      <option name="nodes">
+                        <list>
+                          <MarkdownNode>
+                            <option name="children">
+                              <list />
+                            </option>
+                            <option name="content" value="添加分页插件" />
+                            <option name="contentId" value="1618212440" />
+                            <option name="settled" value="false" />
+                            <option name="type" value="line" />
+                            <option name="xmlData">
+                              <XmlNode />
+                            </option>
+                          </MarkdownNode>
+                        </list>
+                      </option>
+                      <option name="parserState">
+                        <ParserState>
+                          <option name="column" value="5" />
+                          <option name="offset" value="6" />
+                          <option name="moveCursor" value="true" />
+                        </ParserState>
+                      </option>
+                    </SimpleMarkdownStreamParser>
+                  </option>
+                  <option name="role" value="user" />
+                  <option name="selectedRanges">
+                    <list />
+                  </option>
+                  <option name="uri" value="" />
+                  <option name="variables">
+                    <list />
+                  </option>
+                </UIChatMessage>
+                <UIChatMessage>
+                  <option name="actions">
+                    <list />
+                  </option>
+                  <option name="codebaseReferences">
+                    <list />
+                  </option>
+                  <option name="codebaseStatus" value="init" />
+                  <option name="command" value="" />
+                  <option name="content" value="To add a MyBatis-Plus pagination plugin to your configuration, you'll need to modify your `application.yaml` file. Here's how you can add the pagination plugin configuration:&#10;&#10;```yaml&#10;spring:&#10;  application:&#10;    name: ChargingStatioOperationManagementServer&#10;  datasource:&#10;    url: jdbc:mysql://localhost:3306/charging_station_operation?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=utf8&#10;    username: root&#10;    " />
+                  <option name="cost" value="-1" />
+                  <option name="error" value="" />
+                  <option name="id" value="0197786534bc755bb7b802371c88d037" />
+                  <option name="knowledgeReferences">
+                    <list />
+                  </option>
+                  <option name="parser">
+                    <SimpleMarkdownStreamParser>
+                      <option name="columns">
+                        <list>
+                          <option value="173" />
+                          <option value="-1" />
+                          <option value="6" />
+                          <option value="6" />
+                          <option value="13" />
+                          <option value="48" />
+                          <option value="12" />
+                          <option value="117" />
+                          <option value="17" />
+                          <option value="3" />
+                        </list>
+                      </option>
+                      <option name="content" value="To add a MyBatis-Plus pagination plugin to your configuration, you'll need to modify your `application.yaml` file. Here's how you can add the pagination plugin configuration:&#10;&#10;```yaml&#10;spring:&#10;  application:&#10;    name: ChargingStatioOperationManagementServer&#10;  datasource:&#10;    url: jdbc:mysql://localhost:3306/charging_station_operation?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=utf8&#10;    username: root&#10;    &#10;" />
+                      <option name="nodes">
+                        <list>
+                          <MarkdownNode>
+                            <option name="children">
+                              <list />
+                            </option>
+                            <option name="content" value="To add a MyBatis-Plus pagination plugin to your configuration, you'll need to modify your `application.yaml` file. Here's how you can add the pagination plugin configuration:" />
+                            <option name="contentId" value="-574772365" />
+                            <option name="settled" value="true" />
+                            <option name="type" value="line" />
+                            <option name="xmlData">
+                              <XmlNode />
+                            </option>
+                          </MarkdownNode>
+                          <MarkdownNode>
+                            <option name="children">
+                              <list />
+                            </option>
+                            <option name="content" value="" />
+                            <option name="contentId" value="0" />
+                            <option name="settled" value="true" />
+                            <option name="type" value="line" />
+                            <option name="xmlData">
+                              <XmlNode />
+                            </option>
+                          </MarkdownNode>
+                          <MarkdownNode>
+                            <option name="children">
+                              <list />
+                            </option>
+                            <option name="content" value="spring:&#10;  application:&#10;    name: ChargingStatioOperationManagementServer&#10;  datasource:&#10;    url: jdbc:mysql://localhost:3306/charging_station_operation?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=utf8&#10;    username: root&#10;    &#10;" />
+                            <option name="contentId" value="700141644" />
+                            <option name="expectEnding" value="```" />
+                            <option name="indentSize" value="0" />
+                            <option name="language" value="yaml" />
+                            <option name="settled" value="false" />
+                            <option name="type" value="code-block" />
+                            <option name="xmlData">
+                              <XmlNode />
+                            </option>
+                          </MarkdownNode>
+                        </list>
+                      </option>
+                      <option name="parserState">
+                        <ParserState>
+                          <option name="line" value="10" />
+                          <option name="column" value="-1" />
+                          <option name="offset" value="414" />
+                          <option name="innerBlock" value="1" />
+                          <option name="moveCursor" value="true" />
+                        </ParserState>
+                      </option>
+                    </SimpleMarkdownStreamParser>
+                  </option>
+                  <option name="references">
+                    <list />
+                  </option>
+                  <option name="role" value="assistant" />
+                  <option name="topic" value="" />
+                </UIChatMessage>
+              </list>
+            </option>
+            <option name="messagesV3">
+              <list />
+            </option>
+            <option name="sessionId" value="019777a847e5755bb7b7f6baeec97ba0" />
+          </ChatSession>
+        </option>
+        <option name="conversationId" value="019777a847e5755bb7b7f6baeec97ba0" />
+        <option name="conversation">
+          <Conversation>
+            <option name="createTime" value="1750059206152" />
+            <option name="id" value="019777a847e5755bb7b7f6baeec97ba0" />
+            <option name="title" value="添加分页插件" />
+            <option name="updateTime" value="1750059206152" />
+          </Conversation>
+        </option>
+      </WebConversation>
+    </option>
+  </component>
+</project>

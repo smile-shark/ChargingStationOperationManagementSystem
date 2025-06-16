@@ -22,7 +22,7 @@ public class Main {
         };
         // 配置位置1:数据库连接信息
         DataSourceConfig dsc = new DataSourceConfig.Builder(
-                "jdbc:mysql://localhost:3306/school_question_data?&useSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai",
+                "jdbc:mysql://localhost:3306/charging_station_operation?&useSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai",
                 "root", "123456").dbQuery(mySqlQuery).build();
         AutoGenerator generator = new AutoGenerator(dsc);
 
@@ -30,7 +30,7 @@ public class Main {
         String projectPath = System.getProperty("user.dir"); // 获取项目路径
         String filePath = projectPath + "/src/main/java"; // java下的文件路径
         GlobalConfig global = new GlobalConfig.Builder().outputDir(filePath)// 生成的输出路径
-                .author("smileShark")// 生成的作者名字
+                .author("smile鲨鱼")// 生成的作者名字
                 // .enableSwagger()开启swagger，需要添加swagger依赖并配置
                 .dateType(DateType.TIME_PACK)// 时间策略
                 .commentDate("yyyy年MM月dd日")// 格式化时间格式
@@ -39,12 +39,12 @@ public class Main {
 
         // 配置位置3:包名规范配置
         PackageConfig packages = new PackageConfig.Builder().entity("entity")// 实体类包名
-                .parent("com.smileShark")// 父包名。如果为空，将下面子包名必须写全部， 否则就只需写子包名
+                .parent("com.smileshark")// 父包名。如果为空，将下面子包名必须写全部， 否则就只需写子包名
                 .controller("controller")// 控制层包名
                 .mapper("mapper")// mapper层包名
                 .xml("mapper.xml")// 数据访问层xml包名
                 .service("service")// service层包名
-                .serviceImpl("service.impl")// service实现类包名
+                .serviceImpl("service.imp")// service实现类包名
                 .pathInfo(Collections.singletonMap(OutputFile.xml, projectPath + "/src/main/resources/mapper")) // 路径配置信息,就是配置各个文件模板的路径信息,这里以mapper.xml为例
                 .build();
 
@@ -52,7 +52,11 @@ public class Main {
         // 配置位置4:生成策略配置
         StrategyConfig strategyConfig = new StrategyConfig.Builder().enableCapitalMode()// 开启全局大写命名
                 // .likeTable()模糊表匹配
-                .addInclude("chapter","course","question_and_answer","subsection","user")// 添加表匹配，指定要生成的数据表名，不写默认选定数据库所有表
+                .addInclude("alarm_msg","alarm_set","billing_rules","billing_rules_detail",
+                        "car","car_m","charging_card","charging_card","charging_pile",
+                        "charging_record","charging_station","operations_personnel",
+                        "recharge_record","reservation","task","transaction_flow",
+                        "user")// 添加表匹配，指定要生成的数据表名，不写默认选定数据库所有表
                 // .disableSqlFilter()禁用sql过滤:默认(不使用该方法）true
                 // .enableSchema()启用schema:默认false
                 .entityBuilder() // 实体策略配置
