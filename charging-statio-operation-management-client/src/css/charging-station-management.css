@@ -1,0 +1,67 @@
+.charging-station-management {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.operation-time {
+  display: flex;
+  align-items: center;
+}
+
+.separator {
+  margin: 0 10px;
+}
+
+.pile-config {
+  display: flex;
+  gap: 10px;
+}
+
+.preview-image {
+  max-width: 200px;
+  max-height: 200px;
+  margin-top: 10px;
+}
+
+.map-container {
+  position: relative;
+  width: 100%;
+  border: 1px solid #dcdfe6;
+  border-radius: 4px;
+}
+
+.map-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f5f7fa;
+  border-top: 1px solid #dcdfe6;
+}
+
+.coordinate-display {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 5px 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.location-btn {
+  display: flex;
+  align-items: center;
+}
+
+.location-btn i {
+  margin-right: 5px;
+}
+
+#map-container {
+  border-radius: 4px;
+  overflow: hidden;
+}

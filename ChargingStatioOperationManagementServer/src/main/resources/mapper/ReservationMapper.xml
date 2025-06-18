@@ -4,16 +4,54 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.smileshark.entity.Reservation">
-        <result column="charging_pile_id" property="chargingPileId" />
-        <result column="user_id" property="userId" />
-        <result column="reservation_id" property="reservationId" />
-        <result column="start_time" property="startTime" />
-        <result column="range" property="range" />
+        <result column="charging_pile_id" property="chargingPileId"/>
+        <result column="user_id" property="userId"/>
+        <result column="reservation_id" property="reservationId"/>
+        <result column="start_time" property="startTime"/>
+        <result column="range" property="range"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         charging_pile_id, user_id, reservation_id, start_time, range
     </sql>
+
+    <resultMap id="detailListMap" type="reservation">
+        <id column="reservation_id" property="reservationId"/>
+        <result column="charging_pile_id" property="chargingPileId"/>
+        <result column="user_id" property="userId"/>
+        <result column="reservation_id" property="reservationId"/>
+        <result column="start_time" property="startTime"/>
+        <result column="state" property="state"/>
+        <result column="range" property="range"/>
+        <result column="charging_station_name" property="chargingStationName"/>
+        <result column="charging_pile_name" property="chargingPileName"/>
+        <result column="username" property="username"/>
+    </resultMap>
+
+    <select id="detailList" resultMap="detailListMap">
+        select
+        reservation.charging_pile_id as charging_pile_id,
+        reservation.user_id as user_id,
+        reservation.reservation_id as reservation_id,
+        reservation.start_time as start_time,
+        reservation.state as state,
+        reservation.`range` as `range`,
+        charging_pile.name as charging_pile_name,
+        charging_station.name as charging_station_name,
+        user.name as username
+        from reservation
+        join charging_pile on reservation.charging_pile_id = charging_pile.charging_pile_id
+        join charging_station on charging_pile.charging_station_id = charging_station.charging_station_id
+        join user on reservation.user_id = user.user_id
+        <if test="param != null and param != ''">
+            <where>
+                user.name like #{param} or
+                charging_pile.name like #{param} or
+                charging_station.name like #{param} or
+                charging_pile.charging_pile_id like #{param}
+            </where>
+        </if>
+    </select>
 
 </mapper>

@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author smile鲨鱼
@@ -24,6 +24,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChargingStationServiceImp extends ServiceImpl<ChargingStationMapper, ChargingStation> implements ChargingStationService {
     private final ChargingStationMapper chargingStationMapper;
+
     @Override
     public Result<List<ChargingStation>> simpleList() {
         // 简单消息 id,name,state,x,y
@@ -50,11 +51,14 @@ public class ChargingStationServiceImp extends ServiceImpl<ChargingStationMapper
 
     @Override
     public Result<?> updateData(ChargingStation chargingStation) {
-        return Result.ok(lambdaUpdate().update(chargingStation));
+        return Result.ok(lambdaUpdate()
+                .eq(ChargingStation::getChargingStationId, chargingStation.getChargingStationId())
+                .update(chargingStation));
     }
 
     @Override
     public Result<?> deleteData(String id) {
         return Result.ok(chargingStationMapper.deleteById(id));
     }
+
 }

@@ -1,7 +1,14 @@
 package com.smileshark.controller;
 
+import com.smileshark.common.Result;
+import com.smileshark.entity.BillingRules;
+import com.smileshark.service.BillingRulesService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,6 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/billingRules")
+@RequiredArgsConstructor
 public class BillingRulesController {
+    private final BillingRulesService billingRulesService;
+
+    @GetMapping("/list")
+    public Result<List<BillingRules>> allList(){
+        return billingRulesService.allList();
+    }
 
 }

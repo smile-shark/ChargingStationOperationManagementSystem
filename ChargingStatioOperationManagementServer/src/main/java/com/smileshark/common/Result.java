@@ -36,4 +36,7 @@ public class Result<T> {
         return new Result<>(resultCode.getCode(), resultCode.getMsg(), null);
     }
 
+    public static Result<?> no() {
+        return new Result<>(ResultCode.ERROR.getCode(), ResultCode.ERROR.getMsg(), null);
+    }
 }

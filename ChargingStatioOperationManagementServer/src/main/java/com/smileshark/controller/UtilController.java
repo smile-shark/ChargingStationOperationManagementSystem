@@ -26,7 +26,7 @@ public class UtilController {
     @Value("${file-upload.url-prefix}")
     private String urlPrefix;
 
-    @PostMapping("/upload/image")
+    @PostMapping("/uploadImage")
     public Result<String> uploadImage(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
             return Result.no(ResultCode.ERROR);

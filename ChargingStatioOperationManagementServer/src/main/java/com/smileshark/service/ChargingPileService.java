@@ -5,6 +5,8 @@ import com.smileshark.common.Result;
 import com.smileshark.entity.ChargingPile;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -17,9 +19,11 @@ public interface ChargingPileService extends IService<ChargingPile> {
 
      Result<Page<ChargingPile>> detailList(Integer page, Integer size);
 
-     Result<?> addData(ChargingPile chargingPile);
-
-     Result<?> updateData(ChargingPile chargingPile);
-
      Result<?> deleteData(String id);
+
+    Result<Page<ChargingPile>> listByChargingStationId(Integer page, Integer size, String chargingStationId);
+
+    Result<?> addOrUpdate(ChargingPile chargingPile);
+
+    Result<List<ChargingPile>> simpleListByChargingStationId(String chargingStationId);
 }

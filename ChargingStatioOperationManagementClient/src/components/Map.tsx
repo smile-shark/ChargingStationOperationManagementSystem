@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { LatLngExpression, Map } from 'leaflet';
-import { ChargingStation } from "@/entity/ChargingStation";
+import { ChargingStation } from "@/types"; 
 
 interface MapProps {
   chargingStations: ChargingStation[];

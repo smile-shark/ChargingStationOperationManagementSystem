@@ -1,107 +1,90 @@
 import axiosT from "axios";
 import path from "./path";
-import { ChargingStation, ChargingPile } from "../types";
+import { ChargingStation } from "@/types";
 
 const axios = axiosT.create({
-  baseURL:'/api',
+  baseURL: '/api',
   timeout: 60 * 1000,
 });
 
 axios.interceptors.request.use(
-    config => {
-        const jwtToken = localStorage.getItem('token')
-        if (jwtToken) {
-            config.headers['Authorization'] = jwtToken
-        }
-        return config;
-    },
-    error => {
-        return Promise.reject(error)
+  config => {
+    const jwtToken = localStorage.getItem('token')
+    if (jwtToken) {
+      config.headers['Authorization'] = jwtToken
     }
+    return config;
+  },
+  error => {
+    return Promise.reject(error)
+  }
 );
 axios.interceptors.response.use(
-    config=>{
-        if(config.data.code==401){
-            setTimeout(()=>{
-                localStorage.removeItem('token')
-            },1000)
-        }
-        return config
-    },
-    error => {
-        return Promise.reject(error)
+  config => {
+    if (config.data.code == 401) {
+      setTimeout(() => {
+        localStorage.removeItem('token')
+      }, 1000)
     }
+    return config
+  },
+  error => {
+    return Promise.reject(error)
+  }
 )
 
 
 
-interface ApiResponse<T> {
-  code: number;
-  msg?: string;
-  data: T;
-}
-
-interface PageResponse<T> {
-  records: T[];
-  total: number;
-  pages: number;
-  current: number;
-  size: number;
-}
-
 const api = {
   // 充电站相关接口
   chargingStation_simpleList: () => {
-    return axios.get<ApiResponse<ChargingStation[]>>(path.chargingStation.simpleList);
+    return axios.get(path.chargingStation.simpleList);
   },
   chargingStation_count: () => {
-    return axios.get<ApiResponse<number>>(path.chargingStation.count);
+    return axios.get(path.chargingStation.count);
   },
   chargingStation_list: (page: number, size: number) => {
-    return axios.get<ApiResponse<PageResponse<ChargingStation>>>(path.chargingStation.list, {
+    return axios.get(path.chargingStation.list, {
       params: {
         page,
         size
       }
     });
   },
-  chargingStation_add: (data: Omit<ChargingStation, 'chargingStationId'>) => {
-    return axios.post<ApiResponse<ChargingStation>>(path.chargingStation.add, data);
+  chargingStation_add: (data: ChargingStation) => {
+    return axios.post(path.chargingStation.add, data);
   },
-  chargingStation_update: (id: string, data: Partial<ChargingStation>) => {
-    return axios.put<ApiResponse<ChargingStation>>(`${path.chargingStation.update}/${id}`, data);
+  chargingStation_update: (id: string, data: ChargingStation) => {
+    return axios.put(`${path.chargingStation.update}/${id}`, data);
   },
   chargingStation_delete: (id: string) => {
-    return axios.delete<ApiResponse<boolean>>(`${path.chargingStation.delete}/${id}`);
+    return axios.delete(path.chargingStation.delete, {
+      params: {
+        id
+      }
+    });
   },
 
   // 充电桩相关接口
   chargingPile_count: () => {
-    return axios.get<ApiResponse<number>>(path.chargingPile.count);
+    return axios.get(path.chargingPile.count);
   },
   chargingPile_list: (page: number, size: number) => {
-    return axios.get<ApiResponse<PageResponse<ChargingPile>>>(path.chargingPile.list, {
+    return axios.get(path.chargingPile.list, {
       params: {
         page,
         size
       }
     });
   },
-  chargingPile_listByStation: (stationId: string) => {
-    return axios.get<ApiResponse<ChargingPile[]>>(`${path.chargingPile.list}`, {
-      params: {
-        stationId
+  
+  // 文件上传接口
+  upload_file: (formData: FormData) => {
+    return axios.post(path.util.uploadImage, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
       }
     });
   },
-  chargingPile_add: (data: Omit<ChargingPile, 'chargingPileId'>) => {
-    return axios.post<ApiResponse<ChargingPile>>(path.chargingPile.add, data);
-  },
-  chargingPile_update: (id: string, data: Partial<ChargingPile>) => {
-    return axios.put<ApiResponse<ChargingPile>>(`${path.chargingPile.update}/${id}`, data);
-  },
-  chargingPile_delete: (id: string) => {
-    return axios.delete<ApiResponse<boolean>>(`${path.chargingPile.delete}/${id}`);
-  }
 }
 export default api;

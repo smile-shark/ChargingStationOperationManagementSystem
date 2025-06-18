@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -31,6 +33,9 @@ public class ChargingStation implements Serializable {
 
     @TableField("operations_personnel_id")
     private String operationsPersonnelId;
+
+    @TableField(exist = false)
+    private OperationsPersonnel operationsPersonnel;
 
     @TableField("name")
     private String name;
@@ -85,4 +90,7 @@ public class ChargingStation implements Serializable {
      */
     @TableField("bus_pile_count")
     private Integer busPileCount;
+
+    @TableField(exist = false)
+    private List<ChargingPile> chargingPiles;
 }

@@ -14,5 +14,11 @@ export default {
     add: '/chargingPile',
     update: '/chargingPile',
     delete: '/chargingPile',
+  },
+  billingRules:{
+    list:'/billingRules/list'
+  },
+  util: {
+    uploadImage: '/util/uploadImage'
   }
 };

@@ -1,7 +1,14 @@
 package com.smileshark.controller;
 
+import com.smileshark.common.Result;
+import com.smileshark.entity.OperationsPersonnel;
+import com.smileshark.service.OperationsPersonnelService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,6 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/operationsPersonnel")
+@RequiredArgsConstructor
 public class OperationsPersonnelController {
-
+    private final OperationsPersonnelService operationsPersonnelService;
+    @GetMapping("/simpleList")
+    public Result<List<OperationsPersonnel>> simpleList(){
+        return operationsPersonnelService.simpleList();
+    }
 }

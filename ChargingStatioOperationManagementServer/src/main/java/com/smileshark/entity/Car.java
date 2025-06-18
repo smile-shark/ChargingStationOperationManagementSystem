@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -58,7 +60,7 @@ public class Car implements Serializable {
     /**
      * 续航里程
      */
-    @TableField("range")
+    @TableField("`range`")
     private Integer range;
 
     /**
@@ -66,4 +68,9 @@ public class Car implements Serializable {
      */
     @TableField("state")
     private Integer state;
+
+    @TableField(exist = false)
+    private String username;
+    @TableField(exist = false)
+    private List<String> userIds;
 }

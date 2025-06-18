@@ -10,10 +10,11 @@
     "build": "if exist dist rd /s /q dist && pnpm build:client && copy package.json dist && type nul > dist/build.flag"
   },
   "dependencies": {
-    "@amap/amap-react": "^0.1.5",
+    "@element-plus/icons-vue": "^2.3.1",
     "@hello-pangea/dnd": "^16.3.0",
     "axios": "^1.10.0",
     "clsx": "^2.1.1",
+    "element-plus": "^2.10.2",
     "framer-motion": "^12.9.2",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
@@ -24,6 +25,7 @@
     "recharts": "^2.15.1",
     "sonner": "^2.0.2",
     "tailwind-merge": "^3.0.2",
+    "vue": "^3.5.16",
     "xlsx": "^0.18.5",
     "zod": "^3.24.2"
   },

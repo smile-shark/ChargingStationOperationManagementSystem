@@ -19,4 +19,37 @@
         car_id, car_plate, model, type, color, battery_capacity, range, state
     </sql>
 
+    <resultMap id="detailCarPageMap" type="car">
+        <id column="car_id" property="carId" />
+        <result column="car_plate" property="carPlate" />
+        <result column="model" property="model" />
+        <result column="type" property="type" />
+        <result column="color" property="color" />
+        <result column="battery_capacity" property="batteryCapacity" />
+        <result column="state" property="state" />
+        <result column="username" property="username"/>
+    </resultMap>
+
+    <select id="detailCarPage" resultMap="detailCarPageMap">
+        select user.name as username,
+        car.car_id as car_id,
+        car.car_plate as car_plate,
+        car.model as model,
+        car.type as type,
+        car.color as color,
+        battery_capacity,
+        `range`,
+        car.state as state
+        from car
+        join car_m on car.car_id = car_m.car_id
+        join user on car_m.user_id = user.user_id
+        <if test="param !=null and param !=''">
+            <where>
+                user.name like #{param}
+                or car_plate like #{param}
+                or model like #{param}
+            </where>
+        </if>
+    </select>
+
 </mapper>

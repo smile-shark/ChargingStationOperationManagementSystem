@@ -1,6 +1,10 @@
+import React,{useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { mockPileStatus } from '@/lib/mockData';
+import { ChargingPile } from '@/types';
+import api from '@/api';
+
 
 interface StatusCardProps {
   title: string;
@@ -29,7 +33,12 @@ export default function StationStatus() {
   const { id } = useParams();
   const navigate = useNavigate();
   const piles = mockPileStatus[id as keyof typeof mockPileStatus] || [];
+  const [chargingPileList,setChargingPileList] = useState<ChargingPile[]>([]);
   
+  // 获取充电桩列表
+  
+
+
   // 统计各状态数量
   const statusCounts = {
     charging: piles.filter(p => p.status === 'charging').length,

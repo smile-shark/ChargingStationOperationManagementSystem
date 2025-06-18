@@ -1,5 +1,7 @@
 package com.smileshark.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.smileshark.common.Result;
 import com.smileshark.entity.Reservation;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ReservationService extends IService<Reservation> {
 
+     Result<Page<Reservation>> detailList(Integer page, Integer size, String param);
+
+     Result<?> delete(String id);
+
+     Result<?> update(Reservation reservation);
+
+     Result<?> add(Reservation reservation);
 }

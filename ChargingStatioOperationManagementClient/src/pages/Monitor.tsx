@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 import { Card } from '@/components/Card';
 import { useNavigate } from 'react-router-dom';
 import api from '@/api';
-import { ChargingStation } from '@/entity/ChargingStation';
+import { ChargingStation } from '@/types';
 import { use } from 'framer-motion/client';
 import Map from '@/components/Map';
 
@@ -91,7 +91,7 @@ export default function Monitor() {
         <Map 
           chargingStations={stations}
           selectedStation={selectedStation}
-          onPopupClick={(station) => navigate(`/station/${station.chargingStationId}`)}
+          onPopupClick={handleStationClick}
         />
       </div>
 
@@ -127,7 +127,6 @@ export default function Monitor() {
                   key={station.chargingStationId}
                   onClick={() => {
                     setSelectedStation(station);
-                    // 不再直接导航，只设置选中状态
                   }}
                   className="p-2 hover:bg-gray-100 rounded-md cursor-pointer flex items-center"
                 >

@@ -53,6 +53,6 @@ public class BillingRules implements Serializable {
     /**
      * 优先级
      */
-    @TableField("order")
+    @TableField("`order`")
     private Integer order;
 }

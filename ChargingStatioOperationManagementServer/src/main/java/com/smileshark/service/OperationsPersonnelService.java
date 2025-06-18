@@ -1,7 +1,10 @@
 package com.smileshark.service;
 
+import com.smileshark.common.Result;
 import com.smileshark.entity.OperationsPersonnel;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface OperationsPersonnelService extends IService<OperationsPersonnel> {
 
+    Result<List<OperationsPersonnel>> simpleList();
 }

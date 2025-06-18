@@ -7,6 +7,8 @@ import com.smileshark.service.ChargingPileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  * 前端控制器
@@ -33,19 +35,29 @@ public class ChargingPileController {
     ){
         return chargingPileService.detailList(page,size);
     }
-
-    @PostMapping
-    public Result<?> add(@RequestBody ChargingPile chargingPile) {
-        return chargingPileService.addData(chargingPile);
+    @GetMapping("/simpleListByChargingStationId")
+    public Result<List<ChargingPile>> simpleListByChargingStationId(
+            @RequestParam(value = "chargingStationId") String chargingStationId){
+        return chargingPileService.simpleListByChargingStationId(chargingStationId);
     }
 
-    @PutMapping
-    public Result<?> update(@RequestBody ChargingPile chargingPile) {
-        return chargingPileService.updateData(chargingPile);
+    @PostMapping("/addOrUpdate")
+    public Result<?> addOrUpdate(@RequestBody ChargingPile chargingPile) {
+        return chargingPileService.addOrUpdate(chargingPile);
     }
+
 
     @DeleteMapping
     public Result<?> delete(@RequestParam String id) {
         return chargingPileService.deleteData(id);
+    }
+
+    @GetMapping("/listByChargingStationId")
+    public Result<Page<ChargingPile>> listByChargingStationId(
+            @RequestParam(value = "page", defaultValue = "1") Integer page,
+            @RequestParam(value = "size", defaultValue = "10") Integer size,
+            @RequestParam(value = "chargingStationId",required = false) String chargingStationId
+    ){
+        return chargingPileService.listByChargingStationId(page,size,chargingStationId);
     }
 }
