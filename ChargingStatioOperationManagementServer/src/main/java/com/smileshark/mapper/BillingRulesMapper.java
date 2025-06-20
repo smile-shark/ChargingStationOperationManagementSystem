@@ -3,6 +3,7 @@ package com.smileshark.mapper;
 import com.smileshark.entity.BillingRules;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
@@ -14,5 +15,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface BillingRulesMapper extends BaseMapper<BillingRules> {
-
+    // 查询最大 order 值
+    @Select("SELECT MAX(`order`) FROM billing_rules")
+    Integer selectMaxOrder();
 }

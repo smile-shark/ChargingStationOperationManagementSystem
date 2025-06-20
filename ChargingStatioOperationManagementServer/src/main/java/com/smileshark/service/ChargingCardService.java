@@ -16,4 +16,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface ChargingCardService extends IService<ChargingCard> {
 
     Result<Page<ChargingCard>> list(Integer page, Integer size);
+
+    Result<?> add(ChargingCard chargingCard);
+
+    Result<?> update(ChargingCard chargingCard);
+
+    Result<?> delete(String id);
 }

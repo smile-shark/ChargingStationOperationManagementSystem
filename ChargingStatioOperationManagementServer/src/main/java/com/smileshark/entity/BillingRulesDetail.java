@@ -1,6 +1,8 @@
 package com.smileshark.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalTime;
@@ -22,7 +24,8 @@ import lombok.experimental.Accessors;
 @TableName("billing_rules_detail")
 public class BillingRulesDetail implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+//    @TableId(value = "billing_rules_detail_id",type = IdType.ASSIGN_UUID)
+//    private String billingRulesDetailId;
 
     @TableField("billing_rules_id")
     private String billingRulesId;

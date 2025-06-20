@@ -1,5 +1,6 @@
 package com.smileshark.service;
 
+import com.smileshark.common.Result;
 import com.smileshark.entity.BillingRulesDetail;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface BillingRulesDetailService extends IService<BillingRulesDetail> {
 
+
+     Result<?> add(BillingRulesDetail billingRulesDetail);
+
+     Result<?> update(BillingRulesDetail billingRulesDetail);
+
+     Result<?> delete(String id);
 }

@@ -15,7 +15,9 @@ export default {
     simpleListByChargingStationId:'/chargingPile/simpleListByChargingStationId'
   },
   billingRules:{
-    list:'/billingRules/list'
+    list:'/billingRules/list',
+    detailList:'/billingRules/detailList',
+    more:'/billingRules'
   },
   util: {
     uploadImage: '/util/uploadImage'
@@ -28,12 +30,18 @@ export default {
     more:'/reservation'
   },
   user:{
+    more:'/user',
     simpleList:'/user/simpleList',
+    simpleListNotHaveChargingCard:'/user/simpleListNotHaveChargingCard'
   },
   car:{
     more:'/car'
   },
   carM:{
     userIdListByCarId:'/carM/userIdListByCarId'
+  },
+  chargingCard:{
+    list:'/chargingCard/list',
+    more:'/chargingCard'
   }
 };

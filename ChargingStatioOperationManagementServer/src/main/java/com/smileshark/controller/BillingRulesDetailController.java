@@ -1,7 +1,11 @@
 package com.smileshark.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.smileshark.common.Result;
+import com.smileshark.entity.BillingRulesDetail;
+import com.smileshark.service.BillingRulesDetailService;
+import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Delete;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -13,6 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/billingRulesDetail")
+@RequiredArgsConstructor
 public class BillingRulesDetailController {
-
+//    private final BillingRulesDetailService billingRulesDetailService;
+//    @PostMapping
+//    public Result<?> add(@RequestBody BillingRulesDetail billingRulesDetail){
+//        return billingRulesDetailService.add(billingRulesDetail);
+//    }
+//
+//    @PutMapping
+//    public Result<?> update(@RequestBody BillingRulesDetail billingRulesDetail){
+//        return billingRulesDetailService.update(billingRulesDetail);
+//    }
+//    @DeleteMapping
+//    public Result<?> delete(@RequestParam String id){
+//        return billingRulesDetailService.delete(id);
+//    }
 }

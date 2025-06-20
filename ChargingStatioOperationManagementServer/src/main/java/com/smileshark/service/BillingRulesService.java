@@ -17,4 +17,13 @@ import java.util.List;
 public interface BillingRulesService extends IService<BillingRules> {
 
     Result<List<BillingRules>> allList();
+
+
+    Result<List<BillingRules>> detailList(List<Integer> timeRange);
+
+    Result<BillingRules> add(BillingRules billingRules);
+
+    Result<?> update(BillingRules billingRules);
+
+    Result<?> delete(String id);
 }

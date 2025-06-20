@@ -5,10 +5,7 @@ import com.smileshark.common.Result;
 import com.smileshark.entity.ChargingCard;
 import com.smileshark.service.ChargingCardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -29,5 +26,17 @@ public class ChargingCardController {
             @RequestParam(value = "size", defaultValue = "10") Integer size
     ){
         return chargingCardService.list(page, size);
+    }
+    @PostMapping
+    public Result<?> add(@RequestBody ChargingCard chargingCard){
+        return chargingCardService.add(chargingCard);
+    }
+    @PutMapping
+    public Result<?> update(@RequestBody ChargingCard chargingCard){
+        return chargingCardService.update(chargingCard);
+    }
+    @DeleteMapping
+    public Result<?> delete(@RequestParam("id") String id){
+        return chargingCardService.delete(id);
     }
 }

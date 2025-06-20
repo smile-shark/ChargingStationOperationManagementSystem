@@ -50,4 +50,7 @@ public class ChargingCard implements Serializable {
 
     @TableField(exist = false)
     private User user;
+
+    @TableField(exist = false)
+    private String userId;
 }

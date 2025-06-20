@@ -1,5 +1,6 @@
 package com.smileshark.service.imp;
 
+import com.smileshark.common.Result;
 import com.smileshark.entity.BillingRulesDetail;
 import com.smileshark.mapper.BillingRulesDetailMapper;
 import com.smileshark.service.BillingRulesDetailService;
@@ -17,4 +18,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class BillingRulesDetailServiceImp extends ServiceImpl<BillingRulesDetailMapper, BillingRulesDetail> implements BillingRulesDetailService {
 
+    @Override
+    public Result<?> add(BillingRulesDetail billingRulesDetail) {
+        return null;
+    }
+
+    @Override
+    public Result<?> update(BillingRulesDetail billingRulesDetail) {
+        return null;
+    }
+
+    @Override
+    public Result<?> delete(String id) {
+        return null;
+    }
 }

@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -24,13 +27,12 @@ import lombok.experimental.Accessors;
 @TableName("billing_rules")
 public class BillingRules implements Serializable {
 
-    private static final long serialVersionUID = 1L;
 
     @TableId(value = "billing_rules_id", type = IdType.ASSIGN_UUID)
     private String billingRulesId;
 
     @TableField("name")
-    private byte[] name;
+    private String name;
 
     /**
      * 时间范围（0：工作日；1：星期一...7：星期日；8：周某；9节假日）
@@ -55,4 +57,7 @@ public class BillingRules implements Serializable {
      */
     @TableField("`order`")
     private Integer order;
+
+    @TableField(exist = false)
+    private List<BillingRulesDetail> billingRulesDetails = new ArrayList<>();
 }

@@ -56,7 +56,7 @@ public class Main {
                         "car","car_m","charging_card","charging_card","charging_pile",
                         "charging_record","charging_station","operations_personnel",
                         "recharge_record","reservation","task","transaction_flow",
-                        "user")// 添加表匹配，指定要生成的数据表名，不写默认选定数据库所有表
+                        "user","billing_m")// 添加表匹配，指定要生成的数据表名，不写默认选定数据库所有表
                 // .disableSqlFilter()禁用sql过滤:默认(不使用该方法）true
                 // .enableSchema()启用schema:默认false
                 .entityBuilder() // 实体策略配置

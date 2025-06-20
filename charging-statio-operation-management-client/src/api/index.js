@@ -2,18 +2,20 @@ import axiosG from "axios";
 import path from "./path";
 import { data } from "autoprefixer";
 import { Message } from "element-ui";
+import { del } from "vue";
+import { list } from "postcss";
 
 const axios = axiosG.create({
   timeout: 10000,
   baseURL: "/api",
 });
 
-axios.interceptors.response.use(config =>{
-  if(config.data.code!=200){
+axios.interceptors.response.use((config) => {
+  if (config.data.code != 200) {
     Message.error(config.data.msg);
   }
   return config;
-})
+});
 
 export default {
   chargingStation: {
@@ -94,24 +96,70 @@ export default {
     simpleList: () => {
       return axios.get(path.user.simpleList);
     },
+    simpleListNotHaveChargingCard: () => {
+      return axios.get(path.user.simpleListNotHaveChargingCard);
+    },
+    list: (page, size) => {
+      return axios.get(path.user.more, { params: { page, size } });
+    },
+    add: (data) => {
+      return axios.post(path.user.more, data);
+    },
+    update: (data) => {
+      return axios.put(path.user.more, data);
+    },
+    delete: (id) => {
+      return axios.delete(path.user.more, { params: { id } });
+    },
   },
   car: {
     list: (page, size, param) => {
       return axios.get(path.car.more, { params: { page, size, param } });
     },
-    add:(data)=>{
+    add: (data) => {
       return axios.post(path.car.more, data);
     },
-    update:(data)=>{
+    update: (data) => {
       return axios.put(path.car.more, data);
     },
-    delete:(id)=>{
+    delete: (id) => {
       return axios.delete(path.car.more, { params: { id } });
+    },
+  },
+  carM: {
+    userIdListByCarId: (carId) => {
+      return axios.get(path.carM.userIdListByCarId, { params: { carId } });
+    },
+  },
+  chargingCard: {
+    list: (page, size) => {
+      return axios.get(path.chargingCard.list, { params: { page, size } });
+    },
+    add: (data) => {
+      return axios.post(path.chargingCard.more, data);
+    },
+    update: (data) => {
+      return axios.put(path.chargingCard.more, data);
+    },
+    delete: (id) => {
+      return axios.delete(path.chargingCard.more, { params: { id } });
+    },
+  },
+  billingRules: {
+    detailList: (timeRange) => {
+      return axios.get(path.billingRules.detailList, { params: { timeRange:timeRange.join(',') } });
+    },
+    list:()=>{
+      return axios.get(path.billingRules.list)
+    },
+    add:(data)=>{
+      return axios.post(path.billingRules.more,data)
+    },
+    update:(data)=>{
+      return axios.put(path.billingRules.more,data)
+    },
+    delete:(id)=>{
+      return axios.delete(path.billingRules.more,{params:{id}})
     }
   },
-  carM:{
-    userIdListByCarId:(carId)=>{
-      return axios.get(path.carM.userIdListByCarId, { params: { carId } });
-    }
-  }
 };
