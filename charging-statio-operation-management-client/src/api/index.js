@@ -147,19 +147,35 @@ export default {
   },
   billingRules: {
     detailList: (timeRange) => {
-      return axios.get(path.billingRules.detailList, { params: { timeRange:timeRange.join(',') } });
+      return axios.get(path.billingRules.detailList, {
+        params: { timeRange: timeRange.join(",") },
+      });
     },
-    list:()=>{
-      return axios.get(path.billingRules.list)
+    list: () => {
+      return axios.get(path.billingRules.list);
     },
-    add:(data)=>{
-      return axios.post(path.billingRules.more,data)
+    add: (data) => {
+      return axios.post(path.billingRules.more, data);
     },
-    update:(data)=>{
-      return axios.put(path.billingRules.more,data)
+    update: (data) => {
+      return axios.put(path.billingRules.more, data);
     },
-    delete:(id)=>{
-      return axios.delete(path.billingRules.more,{params:{id}})
-    }
+    delete: (id) => {
+      return axios.delete(path.billingRules.more, { params: { id } });
+    },
+  },
+  chargingRecord: {
+    detailList: (page, size, param) => {
+      return axios.get(path.chargingRecord.detailList, {
+        params: { page, size, param },
+      });
+    },
+  },
+  rechargeRecord: {
+    detailList: (page, size,param) => {
+      return axios.get(path.rechargeRecord.detailList, {
+        params: { page, size,param },
+      });
+    },
   },
 };

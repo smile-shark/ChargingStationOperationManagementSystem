@@ -24,7 +24,6 @@ import lombok.experimental.Accessors;
 @TableName("recharge_record")
 public class RechargeRecord implements Serializable {
 
-    private static final long serialVersionUID = 1L;
 
     @TableId(value = "recharge_record_id", type = IdType.ASSIGN_UUID)
     private String rechargeRecordId;
@@ -42,8 +41,15 @@ public class RechargeRecord implements Serializable {
     private Double balance;
 
     /**
-     * 状态（0：失败；1：成功） 
+     * 状态（0：失败；1：成功；2：待支付）
      */
     @TableField("state")
     private Integer state;
+
+    @TableField(exist = false)
+    private String userName;
+    @TableField(exist = false)
+    private String userPhone;
+    @TableField(exist = false)
+    private String chargingCardId;
 }

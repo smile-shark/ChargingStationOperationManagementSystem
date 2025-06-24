@@ -1,7 +1,10 @@
 package com.smileshark.config;
 
+import com.smileshark.interceptor.GlobalInterceptor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -21,6 +24,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
     private String urlPrefix;
 
     @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(globalInterceptor())
+                .addPathPatterns("/**");
+    }
+
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // 配置上传文件的访问路径
         String uploadPathPattern = urlPrefix + "**";
@@ -34,5 +43,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
         // 添加资源处理器
         registry.addResourceHandler(uploadPathPattern)
                 .addResourceLocations("file:" + physicalUploadPath);
+    }
+
+    @Bean
+    public GlobalInterceptor globalInterceptor() {
+        return new GlobalInterceptor();
     }
 }

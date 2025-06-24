@@ -43,5 +43,11 @@ export default {
   chargingCard:{
     list:'/chargingCard/list',
     more:'/chargingCard'
+  },
+  chargingRecord:{
+    detailList:'/chargingRecord/detailList'
+  },
+  rechargeRecord:{
+    detailList:'/rechargeRecord/detailList'
   }
 };

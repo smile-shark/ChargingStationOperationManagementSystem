@@ -1,8 +1,10 @@
 package com.smileshark.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.smileshark.entity.RechargeRecord;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
@@ -14,5 +16,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface RechargeRecordMapper extends BaseMapper<RechargeRecord> {
-
+    Page<RechargeRecord> detailList(Page<RechargeRecord> page, @Param("param")String param);
 }

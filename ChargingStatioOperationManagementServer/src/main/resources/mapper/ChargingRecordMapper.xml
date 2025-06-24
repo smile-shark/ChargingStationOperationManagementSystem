@@ -19,4 +19,39 @@
         charging_record_id, charging_pile_id, user_id, transaction_flow_id, charging_current, charging_long, start_time, state
     </sql>
 
+    <resultMap id="detailListMap" type="chargingRecord">
+        <id column="charging_record_id" property="chargingRecordId" />
+        <result column="user_name" property="userName"/>
+        <result column="user_phone" property="userPhone"/>
+        <result column="charging_pile_type_c" property="chargingPileTypeC"/>
+        <result column="charging_station_name" property="chargingStationName"/>
+    </resultMap>
+
+    <select id="detailList" resultMap="detailListMap">
+        select charging_record_id,
+        charging_record.charging_pile_id as charging_pile_id,
+        charging_record.user_id as user_id,
+        charging_record.transaction_flow_id as transaction_flow_id,
+        charging_record.charging_current as charging_current,
+        charging_record.charging_long as charging_long,
+        charging_record.start_time as start_time,
+        charging_record.state as state,
+        user.name as user_name,
+        user.phone as user_phone,
+        charging_pile.type_c as charging_pile_type_c,
+        charging_station.name as charging_station_name
+        from charging_record
+        join user on charging_record.user_id = user.user_id
+        join charging_pile on charging_record.charging_pile_id = charging_pile.charging_pile_id
+        join charging_station on charging_pile.charging_station_id = charging_station.charging_station_id
+        <if test="param!=null and param!=''">
+            <where>
+                charging_record_id like #{param} or
+                user.name like #{param} or
+                user.phone like #{param} or
+                charging_station.name like #{param}
+            </where>
+        </if>
+    </select>
+
 </mapper>

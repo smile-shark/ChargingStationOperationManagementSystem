@@ -24,8 +24,6 @@ import lombok.experimental.Accessors;
 @TableName("charging_record")
 public class ChargingRecord implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @TableId(value = "charging_record_id", type = IdType.ASSIGN_UUID)
     private String chargingRecordId;
 
@@ -55,4 +53,13 @@ public class ChargingRecord implements Serializable {
      */
     @TableField("state")
     private Integer state;
+
+    @TableField(exist = false)
+    private String userName;
+    @TableField(exist = false)
+    private String userPhone;
+    @TableField(exist = false)
+    private Integer chargingPileTypeC; //充电桩类型
+    @TableField(exist = false)
+    private String chargingStationName;
 }

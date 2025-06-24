@@ -1,5 +1,6 @@
 import { Loading, Message } from "element-ui";
 import api from "@/api";
+import * as XLSX from "xlsx";
 export default {
   point: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
   pointToAry: (data) => {
@@ -48,5 +49,34 @@ export default {
         options.onError(error);
       }
     }
+  },
+  exportExcel(tableName, tilte, data, wscols) {
+    const exportData = [[tableName + "统计表"], tilte, ...data];
+    // 生成工作表
+    const worksheet = XLSX.utils.aoa_to_sheet(exportData);
+    // 合并单元格
+    const range = XLSX.utils.decode_range(worksheet["!ref"]);
+    const lastColumn = XLSX.utils.encode_col(range.e.c);
+    if (!worksheet["!merges"]) worksheet["!merges"] = [];
+    worksheet["!merges"].push({
+      s: { r: 0, c: 0 },
+      e: { r: 0, c: range.e.c },
+    });
+    // 如果有列宽久设置列宽
+    if (wscols) {
+      // const wscols = [
+      //   { wch: 10 },
+      //   { wch: 5 },
+      //   { wch: 5 },
+      // ];
+      worksheet["!cols"] = wscols;
+    }
+    // 生成工作簿
+    const workbook = XLSX.utils.book_new();
+    // 将工作表添加到工作簿中
+    XLSX.utils.book_append_sheet(workbook, worksheet, tableName);
+
+    // 导出
+    XLSX.writeFile(workbook, `${tableName}.xlsx`);
   },
 };

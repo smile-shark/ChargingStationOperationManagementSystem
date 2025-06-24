@@ -1,5 +1,7 @@
 package com.smileshark.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.smileshark.common.Result;
 import com.smileshark.entity.RechargeRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface RechargeRecordService extends IService<RechargeRecord> {
 
+    Result<Page<RechargeRecord>> detailList(Integer page, Integer size, String param);
 }

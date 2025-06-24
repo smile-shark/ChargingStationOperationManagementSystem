@@ -17,4 +17,33 @@
         recharge_record_id, user_id, transaction_flow_id, time, balance, state
     </sql>
 
+    <resultMap id="detailListMap" type="rechargeRecord">
+        <id column="recharge_record_id" property="rechargeRecordId" />
+        <result column="user_name" property="userName"/>
+        <result column="user_phone" property="userPhone"/>
+        <result column="charging_card_id" property="chargingCardId"/>
+    </resultMap>
+
+    <select id="detailList" resultMap="detailListMap">
+        select recharge_record_id,
+        user.name as user_name,
+        user.phone as user_phone,
+        user.charging_card_id as charging_card_id,
+        user.user_id as user_id,
+        transaction_flow_id,
+        time,
+        recharge_record.balance as balance,
+        recharge_record.state as state
+        from recharge_record
+        join user on recharge_record.user_id = user.user_id
+        join charging_card on user.charging_card_id = charging_card.charging_card_id
+        <if test="param!=null and param!=''">
+            <where>
+                recharge_record_id like #{param} or
+                user.name like #{param} or
+                user.phone like #{param}
+            </where>
+        </if>
+    </select>
+
 </mapper>
