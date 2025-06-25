@@ -23,7 +23,9 @@ export default {
     uploadImage: '/util/uploadImage'
   },
   operationsPersonnel:{
-    simpleList:'/operationsPersonnel/simpleList'
+    simpleList:'/operationsPersonnel/simpleList',
+    detailList:'/operationsPersonnel/detailList',
+    more:'/operationsPersonnel'
   },
   reservation:{
     list:'/reservation/list',
@@ -49,5 +51,19 @@ export default {
   },
   rechargeRecord:{
     detailList:'/rechargeRecord/detailList'
+  },
+  transactionFlow:{
+    detailList:'/transactionFlow/detailList'
+  },
+  alarmSet:{
+    saveOrUpdate:'/alarmSet/saveOrUpdate'
+  },
+  alarmMsg:{
+    detailList:'/alarmMsg/detailList',
+    more:'/alarmMsg'
+  },
+  task:{
+    detailList:'/task/detailList',
+    more:'/task'
   }
 };

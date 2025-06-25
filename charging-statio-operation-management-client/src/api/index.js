@@ -66,6 +66,20 @@ export default {
     simpleList: () => {
       return axios.get(path.operationsPersonnel.simpleList);
     },
+    detailList: (page, size, param, state) => {
+      return axios.get(path.operationsPersonnel.detailList, {
+        params: { page, size, param, state },
+      });
+    },
+    add: (data) => {
+      return axios.post(path.operationsPersonnel.more, data);
+    },
+    update: (data) => {
+      return axios.put(path.operationsPersonnel.more, data);
+    },
+    delete: (id) => {
+      return axios.delete(path.operationsPersonnel.more, { params: { id } });
+    },
   },
   util: {
     uploadImage: (data) => {
@@ -172,10 +186,45 @@ export default {
     },
   },
   rechargeRecord: {
-    detailList: (page, size,param) => {
+    detailList: (page, size, param) => {
       return axios.get(path.rechargeRecord.detailList, {
-        params: { page, size,param },
+        params: { page, size, param },
       });
+    },
+  },
+  transactionFlow: {
+    detailList: (page, size, param) => {
+      return axios.get(path.transactionFlow.detailList, {
+        params: { page, size, param },
+      });
+    },
+  },
+  alarmSet: {
+    saveOrUpdate: (data) => {
+      return axios.post(path.alarmSet.saveOrUpdate, data);
+    },
+  },
+  alarmMsg: {
+    detailList: (page, size, param) => {
+      return axios.get(path.alarmMsg.detailList, {
+        params: { page, size, param },
+      });
+    },
+    update: (data) => {
+      return axios.put(path.alarmMsg.more, data);
+    },
+  },
+  task: {
+    detailList: (page, size, state, type) => {
+      return axios.get(path.task.detailList, {
+        params: { page, size, state, type },
+      });
+    },
+    add: (data) => {
+      return axios.post(path.task.more, data);
+    },
+    update: (data) => {
+      return axios.put(path.task.more, data);
     },
   },
 };

@@ -24,8 +24,8 @@
         <el-table :data="transactionFlowList" border ref="table">
           <el-table-column
             width="320"
-            prop="rechargeRecordId"
-            label="充电单号"
+            prop="transactionFlowId"
+            label="订单号"
           ></el-table-column>
           <el-table-column prop="userName" label="客户名称"></el-table-column>
           <el-table-column
@@ -33,14 +33,56 @@
             label="联系电话"
             width="120"
           ></el-table-column>
-          <el-table-column prop="balance" label="交易金额(￥)"></el-table-column>
-          <el-table-column prop="time" label="交易时间"></el-table-column>
+          <el-table-column label="交易类型">
+            <template slot-scope="scope">
+              {{
+                scope.row.transactionType == 0
+                  ? "退款"
+                  : scope.row.transactionType == 1
+                  ? "充电"
+                  : "充值"
+              }}
+            </template>
+          </el-table-column>
+          <el-table-column label="支付方式">
+            <template slot-scope="scope">
+              {{
+                scope.row.payType == 0
+                  ? "充电开"
+                  : scope.row.payType == 1
+                  ? "微信支付"
+                  : "支付宝支付"
+              }}
+            </template>
+          </el-table-column>
+          <el-table-column prop="amouont" label="金额">
+            <template slot-scope="scope">
+              {{ scope.row.amount.toFixed(2) }}
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="chargingStationName"
+            label="所在充电站"
+            width="140"
+          ></el-table-column>
+          <el-table-column
+            width="320"
+            prop="chargingPileId"
+            label="充电桩编号"
+          ></el-table-column>
           <el-table-column label="状态">
             <template slot-scope="scope">
-              <el-tag type="danger" v-if="scope.row.state == 0"> 失败 </el-tag>
-              <el-tag type="success" v-if="scope.row.state == 1"> 成功 </el-tag>
-              <el-tag type="warning" v-if="scope.row.state == 2">
+              <el-tag type="warning" v-if="scope.row.state == 0">
                 待支付
+              </el-tag>
+              <el-tag type="success" v-if="scope.row.state == 1">
+                已完成
+              </el-tag>
+              <el-tag type="primary" v-if="scope.row.state == 2">
+                进行中
+              </el-tag>
+              <el-tag type="danger" v-if="scope.row.state == 3">
+                已取消
               </el-tag>
             </template>
           </el-table-column>
@@ -86,16 +128,33 @@ export default {
         };
       });
       utils.exportExcel(
-        "充值记录",
+        "交易流水",
         title,
         this.transactionFlowList.map((item) => {
           return [
-            item.rechargeRecordId,
+            item.transactionFlowId,
             item.userName,
             item.userPhone,
-            item.balance,
-            item.time,
-            item.state==0?"失败":item.state==1?"成功":"待支付",
+            item.transactionType == 0
+              ? "退款"
+              : item.transactionType == 1
+              ? "充电"
+              : "充值",
+            item.payType == 0
+              ? "充电开"
+              : item.payType == 1
+              ? "微信支付"
+              : "支付宝支付",
+            item.amount.toFixed(2),
+            item.chargingStationName,
+            item.chargingPileId,
+            item.state == 0
+              ? "待支付"
+              : item.state == 1
+              ? "已完成"
+              : item.state == 2
+              ? "进行中"
+              : "已取消",
           ];
         }),
         width
@@ -106,7 +165,7 @@ export default {
         page = 1;
       }
       this.page = page;
-      api.rechargeRecord
+      api.transactionFlow
         .detailList(this.page, this.size, this.param)
         .then((res) => {
           if (res.data.code == 200) {

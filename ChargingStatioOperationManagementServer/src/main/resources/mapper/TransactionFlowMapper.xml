@@ -10,11 +10,49 @@
         <result column="pay_type" property="payType" />
         <result column="amount" property="amount" />
         <result column="state" property="state" />
+        <result column="user_name" property="userName" />
+        <result column="user_phone" property="userPhone" />
+        <result column="charging_station_name" property="chargingStationName" />
+        <result column="charging_pile_id" property="chargingPileId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         transaction_flow_id, user_id, transaction_type, pay_type, amount, state
     </sql>
+
+    <resultMap id="detailListMap" type="transactionFlow">
+        <id column="transaction_flow_id" property="transactionFlowId" />
+        <result column="user_id" property="userId" />
+        <result column="transaction_type" property="transactionType" />
+        <result column="pay_type" property="payType" />
+        <result column="amount" property="amount" />
+        <result column="state" property="state" />
+    </resultMap>
+
+    <select id="detailList" resultMap="detailListMap">
+        select charging_record.transaction_flow_id as transaction_flow_id,
+               user.user_id as user_id,
+               transaction_type,
+               pay_type,
+               amount,
+               charging_record.state as state,
+               user.name as user_name,
+               user.phone as user_phone,
+               charging_station.name as charging_station_name,
+               charging_pile.charging_pile_id as charging_pile_id
+               from transaction_flow
+        join user on transaction_flow.user_id = user.user_id
+        join charging_record on transaction_flow.transaction_flow_id = charging_record.transaction_flow_id
+        join charging_pile on charging_record.charging_pile_id = charging_pile.charging_pile_id
+        join charging_station on charging_pile.charging_station_id = charging_station.charging_station_id
+        <if test="param!=null and param!=''">
+            <where>
+                charging_record.transaction_flow_id like #{param} or
+                user.name like #{param} or
+                user.phone like #{param}
+            </where>
+        </if>
+    </select>
 
 </mapper>

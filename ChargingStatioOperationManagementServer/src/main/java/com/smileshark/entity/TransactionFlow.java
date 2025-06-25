@@ -51,4 +51,13 @@ public class TransactionFlow implements Serializable {
      */
     @TableField("state")
     private Integer state;
+
+    @TableField(exist = false)
+    private String userName;
+    @TableField(exist = false)
+    private String userPhone;
+    @TableField(exist = false)
+    private String chargingStationName;
+    @TableField(exist = false)
+    private String chargingPileId;
 }

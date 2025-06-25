@@ -71,18 +71,18 @@
           </el-submenu>
           <el-submenu index="7">
             <template slot="title"> 分析报表 </template>
-            <el-menu-item index="/analysisReports/FaultAnalysis"
+            <!-- <el-menu-item index="/analysisReports/FaultAnalysis"
               >故障分析</el-menu-item
-            >
+            > -->
             <el-menu-item index="/analysisReports/OperaionAnalysis"
               >运营分析</el-menu-item
             >
-            <el-menu-item index="/analysisReports/FinancialStateMents"
+            <!-- <el-menu-item index="/analysisReports/FinancialStateMents"
               >财务报表</el-menu-item
             >
             <el-menu-item index="/analysisReports/EnergyConsumptionReport"
               >耗能报表</el-menu-item
-            >
+            > -->
           </el-submenu>
         </el-menu>
       </el-aside>
@@ -90,7 +90,7 @@
       <el-container>
         <el-header style="text-align: right; font-size: 12px">
           <!-- 头部  -->
-          <span>王小虎</span>
+          <el-link class="el-icon-setting" style="padding:10px" @click="$router.push('/login')">退出</el-link>
         </el-header>
 
         <el-main style="padding:0">

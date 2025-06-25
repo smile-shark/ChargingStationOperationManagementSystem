@@ -28,10 +28,15 @@ import FinancialStateMents from "@/views/analysis-reports/FinancialStateMents.vu
 import OperaionAnalysis from "@/views/analysis-reports/OperaionAnalysis.vue";
 
 import Middle from "@/views/Middle.vue";
-
+import Login from "@/views/Login.vue";
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
   {
     path: "/",
     name: "Menu",

@@ -18,4 +18,37 @@
         alarm_msg_id, charging_pile_id, type, level, alarm_time, detail, state
     </sql>
 
+    <resultMap id="detailListMap" type="alarmMsg">
+        <id column="alarm_msg_id" property="alarmMsgId" />
+        <result column="charging_pile_id" property="chargingPileId" />
+        <result column="type" property="type" />
+        <result column="level" property="level" />
+        <result column="alarm_time" property="alarmTime" />
+        <result column="detail" property="detail" />
+        <result column="state" property="state" />
+        <result column="charging_station_name" property="chargingStationName"/>
+        <result column="charging_pile_name" property="chargingPileName"/>
+    </resultMap>
+
+    <select id="detailList" resultMap="detailListMap">
+        select
+            alarm_msg_id,
+            alarm_msg.charging_pile_id as charging_pile_id,
+            alarm_msg.type as type,
+            level,
+            alarm_time,
+            alarm_msg.detail as detail,
+            alarm_msg.state as state,
+            charging_station.name as charging_station_name,
+            charging_pile.name as charging_pile_name
+            from alarm_msg
+        join charging_pile on alarm_msg.charging_pile_id = charging_pile.charging_pile_id
+        join charging_station on charging_pile.charging_station_id = charging_station.charging_station_id
+        <if test="param!=null and param!=''">
+            <where>
+                charging_pile.name like #{param} or
+                charging_station.name like #{param}
+            </where>
+        </if>
+    </select>
 </mapper>

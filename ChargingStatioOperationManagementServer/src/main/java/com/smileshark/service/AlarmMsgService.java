@@ -1,5 +1,7 @@
 package com.smileshark.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.smileshark.common.Result;
 import com.smileshark.entity.AlarmMsg;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface AlarmMsgService extends IService<AlarmMsg> {
 
+    Result<Page<AlarmMsg>> detailList(Integer page, Integer size, String param);
+
+    Result<?> update(AlarmMsg alarmMsg);
 }

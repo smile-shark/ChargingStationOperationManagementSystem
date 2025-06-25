@@ -55,4 +55,10 @@ public class AlarmMsg implements Serializable {
      */
     @TableField("state")
     private Integer state;
+
+    @TableField(exist = false)
+    private String chargingStationName;
+    @TableField(exist = false)
+    private String chargingPileName;
+
 }

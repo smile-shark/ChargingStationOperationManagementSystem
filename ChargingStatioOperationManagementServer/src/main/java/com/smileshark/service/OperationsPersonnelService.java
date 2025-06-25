@@ -1,5 +1,6 @@
 package com.smileshark.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.smileshark.common.Result;
 import com.smileshark.entity.OperationsPersonnel;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -17,4 +18,12 @@ import java.util.List;
 public interface OperationsPersonnelService extends IService<OperationsPersonnel> {
 
     Result<List<OperationsPersonnel>> simpleList();
+
+    Result<Page<OperationsPersonnel>> detailList(Integer page, Integer size, String param, Integer state);
+
+    Result<?> add(OperationsPersonnel operationsPersonnel);
+
+    Result<?> update(OperationsPersonnel operationsPersonnel);
+
+    Result<?> delete(String id);
 }

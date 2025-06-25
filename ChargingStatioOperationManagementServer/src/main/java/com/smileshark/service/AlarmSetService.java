@@ -1,5 +1,6 @@
 package com.smileshark.service;
 
+import com.smileshark.common.Result;
 import com.smileshark.entity.AlarmSet;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface AlarmSetService extends IService<AlarmSet> {
 
+    Result<?> saveOrUpdateMY(AlarmSet alarmSet);
 }
