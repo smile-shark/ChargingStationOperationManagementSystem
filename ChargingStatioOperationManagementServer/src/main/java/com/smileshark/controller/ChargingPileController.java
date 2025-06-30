@@ -35,6 +35,12 @@ public class ChargingPileController {
     ){
         return chargingPileService.detailList(page,size);
     }
+    @GetMapping("/allListByChargingStationId")
+    public Result<List<ChargingPile>> allList(
+            @RequestParam(value = "chargingStationId") String chargingStationId
+    ){
+        return chargingPileService.allList(chargingStationId);
+    }
     @GetMapping("/simpleListByChargingStationId")
     public Result<List<ChargingPile>> simpleListByChargingStationId(
             @RequestParam(value = "chargingStationId") String chargingStationId){

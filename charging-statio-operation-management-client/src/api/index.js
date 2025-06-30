@@ -2,17 +2,24 @@ import axiosG from "axios";
 import path from "./path";
 import { data } from "autoprefixer";
 import { Message } from "element-ui";
-import { del } from "vue";
-import { list } from "postcss";
+import router from "@/router";
 
 const axios = axiosG.create({
   timeout: 10000,
   baseURL: "/api",
 });
 
+axios.interceptors.request.use((config) => {
+  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  return config;
+});
+
 axios.interceptors.response.use((config) => {
   if (config.data.code != 200) {
     Message.error(config.data.msg);
+  }
+  if (config.data.code == 401) {
+    router.push("/login");
   }
   return config;
 });
@@ -44,6 +51,11 @@ export default {
     },
     list: (page, size) => {
       return axios.get(path.chargingPile.list, { params: { page, size } });
+    },
+    allListByChargingStationId: (chargingStationId) => {
+      return axios.get(path.chargingPile.allListByChargingStationId,{
+        params: { chargingStationId },  
+      });
     },
     listByChargingStationId: ({ page, size, chargingStationId } = data) => {
       return axios.get(path.chargingPile.listByChargingStationId, {
@@ -225,6 +237,11 @@ export default {
     },
     update: (data) => {
       return axios.put(path.task.more, data);
+    },
+  },
+  admin: {
+    login: (data) => {
+      return axios.post(path.admin.login, data);
     },
   },
 };

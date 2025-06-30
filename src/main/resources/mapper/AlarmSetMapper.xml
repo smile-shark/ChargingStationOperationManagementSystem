@@ -4,7 +4,8 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.smileshark.entity.AlarmSet">
-        <result column="charging_pile_id" property="chargingPileId" />
+        <id column="alarm_set_id" property="alarmSetId" />
+        <result column="charging_station_id" property="chargingStationId" />
         <result column="type" property="type" />
         <result column="warning" property="warning" />
         <result column="serious" property="serious" />
@@ -13,7 +14,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        charging_pile_id, type, warning, serious, alarm_delay
+        charging_station_id, type, warning, serious, alarm_delay, alarm_set_id
     </sql>
 
 </mapper>

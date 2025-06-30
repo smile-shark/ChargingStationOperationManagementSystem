@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author smile鲨鱼
- * @since 2025年06月19日
+ * @since 2025年06月27日
  */
 @Getter
 @Setter
@@ -42,7 +42,7 @@ public class RechargeRecord implements Serializable {
     private Double balance;
 
     /**
-     * 状态（0：失败；1：成功） 
+     * 状态（0：失败；1：成功；2：待支付） 
      */
     @TableField("state")
     private Integer state;

@@ -1,6 +1,8 @@
 package com.smileshark.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import lombok.Getter;
@@ -13,7 +15,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author smile鲨鱼
- * @since 2025年06月19日
+ * @since 2025年06月27日
  */
 @Getter
 @Setter
@@ -23,8 +25,8 @@ public class AlarmSet implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableField("charging_pile_id")
-    private String chargingPileId;
+    @TableField("charging_station_id")
+    private String chargingStationId;
 
     /**
      * 类别（ A相电压 B相电压 C相电压 A相电流 B相电流 C相电流 环境温度 充电枪温度 充电模块温度 绝缘电阻 漏电流）
@@ -49,4 +51,7 @@ public class AlarmSet implements Serializable {
      */
     @TableField("alarm_delay")
     private Double alarmDelay;
+
+    @TableId(value = "alarm_set_id", type = IdType.ASSIGN_UUID)
+    private String alarmSetId;
 }

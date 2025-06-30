@@ -29,9 +29,22 @@ import OperaionAnalysis from "@/views/analysis-reports/OperaionAnalysis.vue";
 
 import Middle from "@/views/Middle.vue";
 import Login from "@/views/Login.vue";
+
+import CustomerHome from "@/views/customer/CustomerHome.vue";
+import CustomerChargingStation from "@/views/customer/CustomerChargingStation.vue";
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/customerHome",
+    name: "CustomerHome",
+    component: CustomerHome,
+  },
+  {
+    path: "/customerChargingStation/:chargingStationId?",
+    name: "CustomerChargingStation",
+    component: CustomerChargingStation,
+  },
   {
     path: "/login",
     name: "Login",

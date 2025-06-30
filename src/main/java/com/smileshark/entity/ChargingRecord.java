@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author smile鲨鱼
- * @since 2025年06月19日
+ * @since 2025年06月27日
  */
 @Getter
 @Setter
@@ -35,18 +35,27 @@ public class ChargingRecord implements Serializable {
     @TableField("user_id")
     private String userId;
 
+    /**
+     * 充电中是没有支付订单的，结束是创建订单
+     */
     @TableField("transaction_flow_id")
     private String transactionFlowId;
 
     /**
-     * 充电电量（KWH）
+     * 充电电量（KWH）结束时计算
      */
     @TableField("charging_current")
     private Integer chargingCurrent;
 
+    /**
+     * 充电时长，结束时计算
+     */
     @TableField("charging_long")
     private Integer chargingLong;
 
+    /**
+     * 开始时间
+     */
     @TableField("start_time")
     private LocalDateTime startTime;
 

@@ -94,6 +94,11 @@ public class ChargingPileServiceImp extends ServiceImpl<ChargingPileMapper, Char
                 .list());
     }
 
+    @Override
+    public Result<List<ChargingPile>> allList(String chargingStationId) {
+        return Result.ok(lambdaQuery().eq(ChargingPile::getChargingStationId, chargingStationId).list());
+    }
+
     /**
      * 更新充电站中对应类型充电桩的数量
      * @param stationId 充电站ID

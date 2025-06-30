@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author smile鲨鱼
- * @since 2025年06月19日
+ * @since 2025年06月27日
  */
 @Mapper
 public interface BillingRulesDetailMapper extends BaseMapper<BillingRulesDetail> {

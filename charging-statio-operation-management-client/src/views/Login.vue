@@ -1,23 +1,42 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-900 to-indigo-600 flex items-center justify-center p-4">
+  <div
+    class="min-h-screen bg-gradient-to-br from-blue-900 to-indigo-600 flex items-center justify-center p-4"
+  >
     <!-- 背景装饰元素 -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div class="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl"></div>
-      <div class="absolute top-1/3 -right-20 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-20 left-1/4 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"></div>
+      <div
+        class="absolute -top-20 -left-20 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute top-1/3 -right-20 w-80 h-80 bg-indigo-500/20 rounded-full blur-3xl"
+      ></div>
+      <div
+        class="absolute -bottom-20 left-1/4 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"
+      ></div>
     </div>
 
     <!-- 登录卡片 -->
-    <div class="relative w-full max-w-md bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden">
+    <div
+      class="relative w-full max-w-md bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden"
+    >
       <!-- 卡片头部 -->
       <div class="p-8 border-b border-white/10">
-        <h1 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-white text-center">充电桩管理系统</h1>
+        <h1
+          class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-white text-center"
+        >
+          充电桩管理系统
+        </h1>
         <p class="text-white/70 text-center mt-2">请登录以访问系统</p>
       </div>
 
       <!-- 登录表单 -->
       <div class="p-8">
-        <el-form :model="loginForm" :rules="loginRules" ref="loginFormRef" class="space-y-6">
+        <el-form
+          :model="loginForm"
+          :rules="loginRules"
+          ref="loginFormRef"
+          class="space-y-6"
+        >
           <!-- 用户名/手机号 -->
           <el-form-item prop="username">
             <el-input
@@ -31,7 +50,7 @@
                 '--el-input-text-color': '#fff',
                 '--el-input-placeholder-color': 'rgba(255, 255, 255, 0.5)',
                 '--el-input-border-color': 'rgba(255, 255, 255, 0.2)',
-                '--el-input-focus-border-color': '#409EFF'
+                '--el-input-focus-border-color': '#409EFF',
               }"
             />
           </el-form-item>
@@ -51,7 +70,7 @@
                 '--el-input-text-color': '#fff',
                 '--el-input-placeholder-color': 'rgba(255, 255, 255, 0.5)',
                 '--el-input-border-color': 'rgba(255, 255, 255, 0.2)',
-                '--el-input-focus-border-color': '#409EFF'
+                '--el-input-focus-border-color': '#409EFF',
               }"
             />
           </el-form-item>
@@ -70,19 +89,28 @@
                   '--el-input-text-color': '#fff',
                   '--el-input-placeholder-color': 'rgba(255, 255, 255, 0.5)',
                   '--el-input-border-color': 'rgba(255, 255, 255, 0.2)',
-                  '--el-input-focus-border-color': '#409EFF'
+                  '--el-input-focus-border-color': '#409EFF',
                 }"
-                style="width: 100%;height: 100%;"
+                style="width: 100%; height: 100%"
               />
-              <div class="bg-white/10 border border-white/20 rounded-lg h-12 flex items-center justify-center w-32 cursor-pointer" @click="refreshCaptcha">
-                <span class="text-white font-bold text-lg tracking-wider px-2" ref="captchaRef">{{ captchaText }}</span>
+              <div
+                class="bg-white/10 border border-white/20 rounded-lg h-12 flex items-center justify-center w-32 cursor-pointer"
+                @click="refreshCaptcha"
+              >
+                <span
+                  class="text-white font-bold text-lg tracking-wider px-2"
+                  ref="captchaRef"
+                  >{{ captchaText }}</span
+                >
               </div>
             </div>
           </el-form-item>
 
           <!-- 记住密码 -->
           <el-form-item>
-            <el-checkbox v-model="loginForm.remember" class="text-white/80">记住密码</el-checkbox>
+            <el-checkbox v-model="loginForm.remember" class="text-white/80"
+              >记住密码</el-checkbox
+            >
           </el-form-item>
 
           <!-- 登录按钮 -->
@@ -100,8 +128,16 @@
 
         <!-- 底部链接 -->
         <div class="flex justify-between mt-6">
-          <a href="#" class="text-white/70 hover:text-white transition-colors text-sm">忘记密码?</a>
-          <a href="#" class="text-white/70 hover:text-white transition-colors text-sm">注册账号</a>
+          <a
+            href="#"
+            class="text-white/70 hover:text-white transition-colors text-sm"
+            >忘记密码?</a
+          >
+          <a
+            href="#"
+            class="text-white/70 hover:text-white transition-colors text-sm"
+            >注册账号</a
+          >
         </div>
       </div>
     </div>
@@ -109,126 +145,119 @@
 </template>
 
 <script>
+import api from "@/api";
 export default {
   data() {
     return {
       loginForm: {
-        username: '',
-        password: '',
-        captcha: '',
-        remember: false
+        username: "",
+        password: "",
+        captcha: "",
+        remember: false,
       },
       loginRules: {
         username: [
-          { required: true, message: '请输入用户名或手机号', trigger: 'blur' },
-          { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+          { required: true, message: "请输入用户名或手机号", trigger: "blur" },
+          {
+            min: 3,
+            max: 20,
+            message: "长度在 3 到 20 个字符",
+            trigger: "blur",
+          },
         ],
         password: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 6, max: 20, message: '密码长度在 6 到 20 个字符', trigger: 'blur' }
+          { required: true, message: "请输入密码", trigger: "blur" },
+          {
+            min: 6,
+            max: 20,
+            message: "密码长度在 6 到 20 个字符",
+            trigger: "blur",
+          },
         ],
         captcha: [
-          { required: true, message: '请输入验证码', trigger: 'blur' },
-          { validator: this.validateCaptcha, trigger: 'blur' }
-        ]
+          { required: true, message: "请输入验证码", trigger: "blur" },
+          { validator: this.validateCaptcha, trigger: "blur" },
+        ],
       },
       loading: false,
       captchaText: this.generateCaptcha(),
-      // 预设的测试账号
-      testAccounts: [
-        { username: 'admin', password: '123456', role: '管理员' },
-        { username: 'operator', password: '123456', role: '运维人员' },
-        { username: '13800138000', password: '123456', role: '用户' }
-      ]
-    }
+    };
   },
   methods: {
     // 生成随机验证码
     generateCaptcha() {
-      const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      let result = '';
+      const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let result = "";
       for (let i = 0; i < 4; i++) {
         result += chars.charAt(Math.floor(Math.random() * chars.length));
       }
       return result;
     },
-    
+
     // 刷新验证码
     refreshCaptcha() {
       this.captchaText = this.generateCaptcha();
       // 添加动画效果
       const captchaEl = this.$refs.captchaRef;
-      captchaEl.classList.add('animate-[fadeIn_0.5s_ease-in-out]');
+      captchaEl.classList.add("animate-[fadeIn_0.5s_ease-in-out]");
       setTimeout(() => {
-        captchaEl.classList.remove('animate-[fadeIn_0.5s_ease-in-out]');
+        captchaEl.classList.remove("animate-[fadeIn_0.5s_ease-in-out]");
       }, 500);
     },
-    
+
     // 验证验证码
     validateCaptcha(rule, value, callback) {
-      if (value === '') {
-        callback(new Error('请输入验证码'));
+      if (value === "") {
+        callback(new Error("请输入验证码"));
       } else if (value.toUpperCase() !== this.captchaText) {
-        callback(new Error('验证码不正确'));
+        callback(new Error("验证码不正确"));
       } else {
         callback();
       }
     },
-    
+
     // 处理登录
     handleLogin() {
-      this.$refs.loginFormRef.validate(valid => {
+      this.$refs.loginFormRef.validate((valid) => {
         if (valid) {
           this.loading = true;
-          
-          // 模拟登录请求延迟
-          setTimeout(() => {
-            // 查找匹配的账号
-            const matchedAccount = this.testAccounts.find(
-              account => account.username === this.loginForm.username && account.password === this.loginForm.password
-            );
-            
-            if (matchedAccount) {
-              // 登录成功
-              this.$message({
-                message: `欢迎回来，${matchedAccount.role} ${this.loginForm.username}`,
-                type: 'success'
-              });
-              
-              // 存储登录状态（实际项目中可能使用cookie、localStorage或Vuex）
-              localStorage.setItem('isLoggedIn', 'true');
-              localStorage.setItem('userRole', matchedAccount.role);
-              
-              // 跳转到首页（实际项目中可能使用路由）
-              setTimeout(() => {
-                window.location.href = '/';
-              }, 1500);
-            } else {
-              // 登录失败
-              this.$message.error('用户名或密码错误');
-              this.refreshCaptcha(); // 刷新验证码
-            }
-            
-            this.loading = false;
-          }, 1000);
+          api.admin
+            .login({
+              account: this.loginForm.username,
+              password: this.loginForm.password,
+            })
+            .then((res) => {
+              if (res.data.code == 200) {
+                localStorage.setItem("token", res.data.data.token);
+                localStorage.setItem("account", res.data.data.account);
+                if (this.loginForm.remember) {
+                  localStorage.setItem("remember", true);
+                  localStorage.setItem("password", this.loginForm.password);
+                } else {
+                  localStorage.removeItem("remember");
+                  localStorage.removeItem("password");
+                }
+                this.$router.push("/");
+              } else {
+                this.refreshCaptcha(); // 刷新验证码
+              }
+              this.loading = false;
+            });
         } else {
-          console.log('验证失败');
+          console.log("验证失败");
           return false;
         }
       });
+    },
+  },
+  mounted() {
+    if (localStorage.getItem("remember")) {
+      this.loginForm.username = localStorage.getItem("account");
+      this.loginForm.password = localStorage.getItem("password");
+      this.loginForm.remember = true;
     }
   },
-  created() {
-    // 检查是否已登录（实际项目中可能需要）
-    // const isLoggedIn = localStorage.getItem('isLoggedIn');
-    // if (isLoggedIn === 'true') {
-    //   this.$message.warning('您已登录，正在跳转到首页...');
-    //   setTimeout(() => {
-    //     window.location.href = '/dashboard';
-    //   }, 1000);
-    // }
-  }
-}
+};
 </script>
 
 <style scoped>
@@ -237,8 +266,14 @@ export default {
 
 /* 自定义动画 */
 @keyframes fadeIn {
-  0% { opacity: 0; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* 全局样式 */
@@ -248,8 +283,8 @@ export default {
 
 ::v-deep .el-checkbox__input.is-checked .el-checkbox__inner,
 ::v-deep .el-checkbox__input.is-indeterminate .el-checkbox__inner {
-  background-color: #409EFF;
-  border-color: #409EFF;
+  background-color: #409eff;
+  border-color: #409eff;
 }
 
 ::v-deep .el-checkbox__inner {

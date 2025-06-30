@@ -9,6 +9,7 @@ export default {
   chargingPile:{
     count: '/chargingPile/count',
     list: '/chargingPile/list',
+    allListByChargingStationId: '/chargingPile/allListByChargingStationId',
     more: '/chargingPile',
     addOrUpdate:'/chargingPile/addOrUpdate',
     listByChargingStationId:'/chargingPile/listByChargingStationId',
@@ -65,5 +66,8 @@ export default {
   task:{
     detailList:'/task/detailList',
     more:'/task'
+  },
+  admin:{
+    login:'/admin/login',
   }
 };

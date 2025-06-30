@@ -26,4 +26,6 @@ public interface ChargingPileService extends IService<ChargingPile> {
     Result<?> addOrUpdate(ChargingPile chargingPile);
 
     Result<List<ChargingPile>> simpleListByChargingStationId(String chargingStationId);
+
+    Result<List<ChargingPile>> allList(String chargingStationId);
 }
